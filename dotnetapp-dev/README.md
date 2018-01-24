@@ -56,6 +56,8 @@ docker build -t dotnetapp-dev .
 
 The sample runs unit tests as part of `docker build`, as described above. That's useful as a means of getting feedback during `build` (the build will fail), but there isn't an easy way to get the test logs. The sample exposes a `testrunner` stage that you can build and then run explicity. This is why there are two `ENTRYPOINT` lines in the [Dockerfile](Dockerfile).
 
+Just like in the example above, you can get the unit test to fail by updating the [unit test](tests/UnitTest1.cs). Doing this is useful to see the behavior.
+
 You can build and run the sample in Docker using the following commands. The instructions assume that you are in the root of the repository. They also assume a location for the repo (please change to fit your environment).
 
 ```console
@@ -83,7 +85,10 @@ You can run the sample on **macOS** or **Linux** using the following command. Yo
 docker run --rm -v "$(pwd)"/TestResults:/app/tests/TestResults dotnetapp-dev:test
 ```
 
-You should find a `.trx` file in the TestResults folder. You can open this file in Visual Studio to see the results of the test run. You can open in Visual Studio (File -> Open -> File)or double-click on the TRX file (if you have Visual Studio installed). There are other TRX file viewers available as well that you can search for.
+You should find a `.trx` file in the TestResults folder. You can open this file in Visual Studio to see the results of the test run, as you can see in the following image. You can open in Visual Studio (File -> Open -> File) or double-click on the TRX file (if you have Visual Studio installed). There are other TRX file viewers available as well that you can search for.
+
+![Visual Studio Test Results](![image](https://user-images.githubusercontent.com/2608468/35361940-2f5ab914-0118-11e8-9c40-4f252f4568f0.png)
+)
 
 The unit testing in this Dockerfile demonstrates a couple approaches to unit testing with Docker. If you adopt this Dockerfile, you don't need to use both or either of these approaches. They are patterns that we considered useful for the unit testing use case.
 
